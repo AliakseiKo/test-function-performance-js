@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Function Performance</title>
+</head>
+<body>
+
+<script src="./testFunctionPerformance.js"></script>
+
+<script>
+  function parseInt1(str) {
+    return parseInt(str, 10);
+  }
+
+  function parseInt2(str) {
+    return parseFloat(str);
+  }
+
+  function parseInt3(str) {
+    return +str;
+  }
+
+  function parseInt4(str) {
+    return Number(str);
+  }
+
+  function parseInt5(str) {
+    const length = str.length;
+
+    let result = 0;
+
+    for (let i = 0; i < length; ++i) {
+      const number = str.charCodeAt(i) - 48;
+      result = result * 10 + number;
+    }
+
+    return result;
+  }
+
+  const result = testFunctionPerformance(100, 10000, [ parseInt1, parseInt2, parseInt3, parseInt4, parseInt5 ], null, '5463234647654');
+
+  console.table(result.result);
+</script>
+
+</body>
+</html>
